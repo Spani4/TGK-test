@@ -1,0 +1,8 @@
+@mixin transition($prop) {
+    transition-property: $prop;
+    transition-duration: .4s;
+
+    &:hover {
+        transition-duration: .05s;
+    }
+}

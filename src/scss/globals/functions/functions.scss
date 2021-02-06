@@ -1,0 +1,22 @@
+// равномерное увеличение значения. Не очень подходит при прыгающем контейнере
+@function dynamic-value($val1, $val2, $min-screen: 320px, $max-screen: map-get($grid-breakpoints, sm)) {
+
+
+    $vals-diff: ($val2 - $val1) / ($val1 * 0 + 1); // no-units
+    $screens-diff: ($max-screen - $min-screen) / 1px;
+
+    @if  unit($val1) == 'rem' {
+        $vals-diff: $vals-diff * ($rem/1px);
+    }
+
+    $size: calc( #{$val1} + #{$vals-diff} * ((100vw - #{$min-screen}) / #{$screens-diff}) );
+
+    @return $size;
+}
+
+
+// если не указаны единицы, преобразует в пиксели
+@function unitlessToPx($value) {
+    @if unitless($value) { @return $value + 1px - 1px; } 
+    @else { @return $value; }
+}

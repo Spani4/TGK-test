@@ -1,0 +1,25 @@
+@import "globals/globals";
+
+@import "components/loader";
+@import "components/header";
+@import "components/vue-transitions";
+
+body {
+    background-color: $light;
+}
+
+.auth-page {
+    padding-top: 20vh;
+    min-height: 100vh;
+}
+
+.contacts-page {
+    min-height: 100vh;
+    @include flex(col);
+    
+    &__content {
+        @extend .py-3;
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+}

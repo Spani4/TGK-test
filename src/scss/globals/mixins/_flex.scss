@@ -1,0 +1,42 @@
+@mixin flex($d: row, $j: null, $a: null, $w: null) {
+    display: flex;
+
+    @if $d == col {
+        flex-direction: column;
+    }
+
+    @if $j == fs {
+        justify-content: flex-start;
+    } @else if $j == fe {
+        justify-content: flex-end;
+    } @else if $j == sb {
+        justify-content: space-between;
+    } @else if $j == se {
+        justify-content: space-evenly;
+    } @else if $j == sa {
+        justify-content: space-around;
+    } @else if $j == c {
+        justify-content: center;
+    } @else if $j == s {
+        justify-content: stretch;
+    }
+
+
+    @if $a == fs {
+        align-items: flex-start;
+    } @else if $a == fe {
+        align-items: flex-end;
+    } @else if $a == sb {
+        align-items: space-between;
+    } @else if $a == sa {
+        align-items: space-around;
+    } @else if $a == c {
+        align-items: center;
+    } @else if $a == s {
+        align-items: stretch;
+    }
+
+    @if $w == w {
+        flex-wrap: wrap;
+    }
+}

@@ -1,0 +1,27 @@
+.header {
+
+    @extend %centered;
+    margin-bottom: 1rem;
+    padding:  1rem 0;
+    background-color: $primary-dark;
+    color: $white;
+
+    &__title {
+        letter-spacing: 1.5vw;
+    }
+
+    &__right {
+        @include flex(row,sb,fe);
+
+        @media (min-width: $sm) {
+            flex-direction: column;
+        }
+    }
+
+    &__logout-link {
+        display: inline-block;
+        padding: 0 .5rem;
+        border: 1px solid $white;
+        border-radius: 10px;
+    }
+}

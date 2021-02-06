@@ -1,0 +1,9 @@
+.contact-editor {
+
+    .form-group {
+        @extend .py-2;
+        @extend .mx-2;
+        border: 1px solid $secondary-dark;
+        border-radius: .5rem;
+    }
+}

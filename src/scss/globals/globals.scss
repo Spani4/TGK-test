@@ -1,0 +1,25 @@
+@import "fonts";
+@import "var";
+@import "functions/functions";
+@import "bootstrap/bootstrap";
+@import "mixins/mixins";
+@import "extensions";
+
+
+html {
+    font-size: $rem;
+}
+
+body {
+    @include flex(col);
+    position: relative;
+    min-height: 100vh;
+
+    &.fixed {
+        overflow: hidden;
+    }
+}
+
+main {
+    flex-grow: 1;
+}

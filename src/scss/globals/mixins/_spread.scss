@@ -1,0 +1,45 @@
+// Распределяет массив значений по брейкпойнтам бутстрапа.
+// Значения должны быть в px, rem или без единиц (преобразуются в px)
+@mixin spread($prop, $values) {
+
+    $value-xs: unitlessToPx( nth($values, 1) );
+    $value-sm: unitlessToPx( nth($values, 2) );
+
+    $prev-value: $value-sm;
+
+    $breakpoints: map-values($grid-breakpoints);
+    $breakpoint-sm: map-get($grid-breakpoints, sm);
+
+    $min-screen: 320px;
+
+    #{$prop}: $value-xs;
+
+    // равномерное увеличение значения на на малом экране. Не подходит при прыгающем контейнере
+    @media (min-width: $min-screen) {
+        #{$prop}: dynamic-value($value-xs, $value-sm, $min-screen, $breakpoint-sm);;
+    }   
+
+
+    @for $i from 2 through length($values) {
+
+        $breakpoint: nth($breakpoints, $i);
+        $value: unitlessToPx( nth($values, $i) );
+        
+        @if ($i >= 2) and ($breakpoint != null) {
+
+            @if $i = 2 {
+
+                @media (min-width: $breakpoint) { // на второй точке обязательно
+                    #{$prop}: $value;
+                }  
+
+            } @else if $value != $prev-value { //  - во избежание лишнего кода в css
+
+                @media (min-width: $breakpoint) {
+                    #{$prop}: $value;
+                }
+            }
+            $prev-value: $value;
+        }
+    }
+}
