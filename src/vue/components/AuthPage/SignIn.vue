@@ -58,8 +58,8 @@ export default {
 
     data() {
         return {
-            email: '',
-            password: '',
+            email: 'tester123@m.tast',
+            password: 'ndlkptb',
             showErrors: false,
         }
     },

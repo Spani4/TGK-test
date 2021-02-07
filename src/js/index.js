@@ -15,7 +15,7 @@ Vue.directive('focus', {
     }
 })
 
-store.dispatch('getUser');
+store.dispatch('autologin');
 
 const el = document.getElementById('app');
 

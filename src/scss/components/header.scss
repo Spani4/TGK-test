@@ -1,27 +1,13 @@
 .header {
 
     @extend %centered;
-    margin-bottom: 1rem;
-    padding:  1rem 0;
-    background-color: $primary-dark;
+    background-color: $primary;
     color: $white;
 
-    &__title {
-        letter-spacing: 1.5vw;
-    }
-
-    &__right {
-        @include flex(row,sb,fe);
-
-        @media (min-width: $sm) {
-            flex-direction: column;
+    .nav-link {
+        transition: .2s;
+        &:hover {
+            background-color: mix($primary, black, 90%);
         }
-    }
-
-    &__logout-link {
-        display: inline-block;
-        padding: 0 .5rem;
-        border: 1px solid $white;
-        border-radius: 10px;
     }
 }

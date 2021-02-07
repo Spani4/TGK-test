@@ -19,14 +19,12 @@
 import { mapActions } from 'vuex';
 
 import SignIn from "~/vue/components/AuthPage/SignIn.vue";
-// import SignUp from "~/vue/components/AuthPage/SignUp.vue";
 
 
 export default {
     name: "AuthFrame",
     components: {
         SignIn,
-        // SignUp
     },
 
     data() {
@@ -35,18 +33,6 @@ export default {
         }
     },
 
-    computed: {
-        // translatedAuthError() {
-
-        //     switch ( this.authError ) {
-        //         case 'EMAIL_EXISTS': return 'The email address is already in use.'
-        //         case 'TOO_MANY_ATTEMPTS_TRY_LATER': return 'We have blocked all requests from this device due to unusual activity. Try again later.'
-        //         case 'EMAIL_NOT_FOUND': return 'There is no user record corresponding to this identifier.'
-        //         case 'INVALID_PASSWORD': return 'The password is invalid.'
-        //         case 'USER_DISABLED': return 'The user account has been disabled by an administrator.'
-        //         default: return 'Authorization error';
-        //     }
-        // }
-    },    
+    computed: {},    
 }
 </script>

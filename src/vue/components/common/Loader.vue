@@ -1,5 +1,8 @@
 <template lang="pug">
-    .loader(v-if="loading")
+    .loader(
+        v-if="loading || !appLoaded"
+        :class="{ 'global' : !appLoaded}"
+        )
         .spinner-border.text-primary
 </template>
 
@@ -9,7 +12,7 @@ import { mapState } from 'vuex';
 export default {
 
     computed: {
-        ...mapState(['loading']),
+        ...mapState(['loading', 'appLoaded']),
     }
 }
 </script>

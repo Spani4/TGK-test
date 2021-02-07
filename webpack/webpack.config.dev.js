@@ -21,14 +21,14 @@ module.exports = merge(common, {
             errors  : true
         },
         open: "Chrome",
-        // proxy: [
-        //     {
-        //         context: ['/api', '/data'],
-        //         target: "",
-        //         changeOrigin: true,
-        //         withCredentials: true,
-        //     },
-        // ],
+        proxy: [
+            {
+                context: ['/token', '/User', '/Points', '/Indication'],
+                target: "http://aspt.tgc2-energo.ru",
+                changeOrigin: true,
+                withCredentials: true,
+            },
+        ],
 
     },
     plugins    : [

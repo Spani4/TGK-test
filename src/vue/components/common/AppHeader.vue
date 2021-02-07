@@ -1,15 +1,14 @@
 <template lang="pug">
     header.header
         .container
-            .row
-                .col-12.col-sm-3.header__left
-                    h1.header__title Contacts
-                .col-12.col-sm-9.header__right
-                    //- span {{ email }}
-                    a.header__logout-link.text-secondary(
-                        href="/auth"
-                        @click.prevent="logout"
-                    ) Выйти
+            .nav.d-flex.align-content-center.text-white
+                router-link.nav-link.text-white.p-3(to="/profile") Пользователь
+                router-link.nav-link.text-white.p-3(to="/objects") Объекты учета
+                .flex-grow-1
+                a.nav-link.text-white.p-3(
+                    href="#"
+                    @click.prevent="logout"
+                ) Выйти
 </template>
 
 
@@ -20,10 +19,11 @@ export default {
             this.$store.dispatch('logout');
         }
     },
-    computed: {
-        // email() {
-        //     return this.$store.state.user.email;
-        // }
-    }
 }
 </script>
+
+<style lang="scss" scoped>
+.nav-link {
+    font-weight: bold;
+}
+</style>

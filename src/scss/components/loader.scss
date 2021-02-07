@@ -10,5 +10,9 @@
     z-index: 100;
 
     background-color: rgba(#fff, .7);
+    
+    &.global {
+        background-color: #fff;
+    }
 
 }
