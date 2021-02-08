@@ -14,7 +14,6 @@ export default new Vuex.Store({
         loading: false,
         user: null,
         objects: [],
-        indications: [],
     },
 
     actions: {
@@ -28,6 +27,8 @@ export default new Vuex.Store({
             } catch (err) {
                 console.error('Authorization failed');
                 console.error(err);
+                dispatch('stopLoading');
+                throw('Неверный логин/пароль')
             }
             dispatch('getUser');
         },
@@ -59,13 +60,11 @@ export default new Vuex.Store({
         },
 
         async getIndications({ state, dispatch, commit }) {
-            commit('CLEAR_INDICATIONS');
             state.objects.forEach(async (object) => {
                 try {
                     const response = await axiosAuth.get(`/Indication/${object.id}`);
                     const indications = response.data;
                     commit('SET_INDICATIONS', {object, indications});
-                    commit('PUSH_INDICATIONS', indications);
                 } catch(err) {
                     console.error(`Failed to get object indication id:${object.id}`);
                     console.error(err);
@@ -77,8 +76,8 @@ export default new Vuex.Store({
         },
 
         async sendNewIndication({ dispatch, commit }, indicationsData) {
+            dispatch('startLoading');
             try {
-                dispatch('startLoading');
                 await axiosAuth.post('/Indication', indicationsData);
             } catch(err) {
                 console.error(`Failed to send object indication id:${indicationsData.ownerId}`);
@@ -90,8 +89,8 @@ export default new Vuex.Store({
         },
 
         async deleteIndication({ dispatch, commit}, indication) {
+            dispatch('startLoading');
             try {
-                dispatch('startLoading');
                 await axiosAuth.delete(`/Indication/${indication.id}`);
             } catch(err) {
                 console.error(`Failed to delete object indication id:${indication.id}`);
@@ -114,7 +113,8 @@ export default new Vuex.Store({
         logout({ commit }) {
             localStorage.removeItem('access_token');
             commit('SET_USER', null);
-            router.push('/auth')
+            router.push('/auth');
+            commit('APP_LOADED');
         },
 
         startLoading({ commit }) {
@@ -139,7 +139,6 @@ export default new Vuex.Store({
         },
 
         SET_OBJECTS(state, objects) {
-            // state.objects = objects;
             state.objects.splice(0, state.objects.length);
             objects.forEach(obj => {
                 obj.indications = [];
@@ -148,25 +147,10 @@ export default new Vuex.Store({
         },
 
         SET_INDICATIONS(state, payload) {
-            // payload.object.indications = payload.indications;
             payload.object.indications.splice(0,payload.object.indications.length);
             payload.indications.forEach(indication => {
                 payload.object.indications.push(indication);
             });
         },
-
-        CLEAR_INDICATIONS(state) {
-            state.indications = [];
-        },
-
-        PUSH_INDICATIONS(state, indications) {
-            state.indications.push(...indications);
-        }
     },
-
-    getters: {
-        indicationsLength(state) {
-            return state.indications.length;
-        }
-    }
 })

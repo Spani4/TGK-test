@@ -65,7 +65,6 @@ export default {
                     return momentB - momentA;
                 });
             }
-            // return this.object.indications;
         }
     },
 
@@ -112,10 +111,6 @@ export default {
                 this.newIndications = this.maxIndications;
             }
         },
-        // indicationsLength(newVal) {
-        //     console.log(newVal);
-        //     this.$forceUpdate();
-        // }
     },
 
     mounted() {

@@ -12,16 +12,16 @@
                 .text-danger(v-if="showErrors")
                     small.d-block(
                         v-if="!$v.email.email"
-                    ) Email is invalid
+                    ) Email некорректный
                     small.d-block(
                         v-if="!$v.email.required"
-                    ) Email is required
+                    ) Введите Email
                     small.d-block(
                         v-if="!$v.email.max"
-                    ) Email is too long. You gotta be kidding.
+                    ) Email некорректный
 
             .form-group
-                label.d-block Password
+                label.d-block Пароль
                     input.form-control(
                         type="password"
                         name="password"
@@ -30,13 +30,13 @@
                 .text-danger(v-if="showErrors")
                     small.d-block(
                         v-if="!$v.password.max"
-                    ) Password is too long. You gotta be kidding.
+                    ) Пароль слишком длинный
                     small.d-block(
                         v-if="!$v.password.required"
-                    ) Password is required
+                    ) Введите пароль
                     small.d-block(
                         v-if="!$v.password.min"
-                    ) It's too short (That's what she said)
+                    ) Пароль слишком короткий
 
             slot(name="autherror")
 
@@ -44,7 +44,7 @@
                 button.btn.btn-primary(
                     type="button"
                     @click="submit"
-                ) Sign In
+                ) Войти
 </template>
 
 
